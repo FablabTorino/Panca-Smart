@@ -9,9 +9,12 @@
 **Partner:** [Associazione Fablab Torino](http://fablabtorino.org/), Associazione Spazio Nuova Arquata  
 **Durata:** 1,5 Anni   
 **Progetto:** In allegato_4  
-**Sinossi:** Il progetto ha come obiettivo la realizzazione di una panchina intelligente, frutto di una co-creazione con gli abitanti del quartiere, zona Via Arquata, vicino al Fablab di Torino.
-**Referente Fablab Torino:** Davide Gomba  
-**Referente Spazio Nuova Arquata:** Maria Teresa Nesta
+**Sinossi:** Il progetto ha come obiettivo la realizzazione di una panchina intelligente, frutto di una co-creazione con gli abitanti del quartiere, zona Via Arquata, vicino al Fablab di Torino.  
+**Referente Fablab Torino:** Davide Gomba    
+**Referente Spazio Nuova Arquata:** Maria Teresa Nesta  
+**Team di Ricerca sul Campo / Field Design Team** TBD     
+**Team di Sviluppo del Progetto / Design & Making Team:** TBD    
+**Team di Sviluppo Codice ed Elettronica / Dev & HW Team:** TBD  
 
 
 ![Render prodotto a solo scopo esplicativo: il design della panchina sarà prodotto nei prossimi mesi!](Documentazione/panchina-1.png "Render prodotto a solo scopo esplicativo: il design della panchina sarà prodotto nei prossimi mesi!")
