@@ -4,12 +4,14 @@
 ## Comune di Torino, Bando AXTO per le periferie Torinesi
 ### Progetto Speciale Innovazione Fondi Europei - Smart City
 
-![](logo_AxTO.jpg)
+![](/Loghi/logo_AxTO.jpg)
 
 **Partner:** [Associazione Fablab Torino](http://fablabtorino.org/), Associazione Spazio Nuova Arquata  
 **Durata:** 1,5 Anni   
 **Progetto:** In allegato_4  
 **Sinossi:** Il progetto ha come obiettivo la realizzazione di una panchina intelligente, frutto di una co-creazione con gli abitanti del quartiere, zona Via Arquata, vicino al Fablab di Torino.
+
+![Render prodotto a solo scopo esplicativo: il design della panchina sarà prodotto nei prossimi mesi!](Documentazione/panchina-1.png "Render prodotto a solo scopo esplicativo: il design della panchina sarà prodotto nei prossimi mesi!")
 
 **Descrizione:** Il progetto ha come obiettivo la realizzazione di una panchina intelligente, frutto di una co-creazione con gli abitanti del quartiere.
 
