@@ -19,6 +19,10 @@
 **Team di Sviluppo Codice ed Elettronica / Dev & HW Team:** TBD  
 **Mail di riferimento**: panca@fablabtorino.org
 
+## Prossimi Step
+
+* **Castanata!** Sabato 27 Ottobre 2018, Pomeriggio / Spazio Arquata / Via Rapallo 20, 10134 Torino: identificazione del team di lavoro per la cocreazione della panchina. 
+
 
 ![Render prodotto a solo scopo esplicativo: il design della panchina sarà prodotto nei prossimi mesi!](Documentazione/panchina-1.png "Render prodotto a solo scopo esplicativo: il design della panchina sarà prodotto nei prossimi mesi!")
 
