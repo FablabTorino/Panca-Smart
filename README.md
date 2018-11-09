@@ -14,7 +14,7 @@
 **Sinossi:** Il progetto ha come obiettivo la realizzazione di una panchina intelligente, frutto di una co-creazione con gli abitanti del quartiere, zona Via Arquata, vicino al Fablab di Torino.  
 **Referente Fablab Torino:** Davide Gomba    
 **Referente Spazio Nuova Arquata:** Maria Teresa Nesta  
-**Team di Ricerca sul Campo / Field Design Team** TBD     
+**Team di Ricerca sul Campo / Field Design Team** Lorenzo Martini, Fernanda Trujillo, Davide Gomba, Luigi    
 **Team di Sviluppo del Progetto / Design & Making Team:** TBD    
 **Team di Sviluppo Codice ed Elettronica / Dev & HW Team:** TBD  
 **Mail di riferimento**: panca@fablabtorino.org
@@ -22,6 +22,10 @@
 ## Prossimi Step
 
 * **Castanata!** Sabato 27 Ottobre 2018, Pomeriggio / Spazio Arquata / Via Rapallo 20, 10134 Torino: identificazione del team di lavoro per la cocreazione della panchina. 
+
+* **kick-off Meeting** Mercoledì 7 Novembre 2018 @ Fablab Torino
+
+* **Primo Incontro di Ricerca** Martedì 12 Novembre 2018 17:00 @ Baraca
 
 
 ![Render prodotto a solo scopo esplicativo: il design della panchina sarà prodotto nei prossimi mesi!](Documentazione/panchina-1.png "Render prodotto a solo scopo esplicativo: il design della panchina sarà prodotto nei prossimi mesi!")
