@@ -21,11 +21,17 @@
 
 ## Prossimi Step
 
-* **Castanata!** Sabato 27 Ottobre 2018, Pomeriggio / Spazio Arquata / Via Rapallo 20, 10134 Torino: identificazione del team di lavoro per la cocreazione della panchina.
+* ~~**Castagnata!** Sabato 27 Ottobre 2018, Pomeriggio / Spazio Arquata / Via Rapallo 20, 10134 Torino: identificazione del team di lavoro per la cocreazione della panchina.~~
 
-* **kick-off Meeting** Mercoledì 7 Novembre 2018 @ Fablab Torino
+* ~~**kick-off Meeting** Mercoledì 7 Novembre 2018 @ Fablab Torino~~
 
-* **Primo Incontro di Ricerca** Martedì 12 Novembre 2018 17:00 @ Baraca
+* ~~**Primo Incontro di Ricerca** Martedì 12 Novembre 2018 17:00 @ Baraca~~
+
+Leggi report incontri [qui](https://github.com/FablabTorino/Panca-Smart/wiki/Report(s)
+
+* **Festa di Natale al Baraca 19 Dicembre **
+
+* **Sprint Invernale Tra Natale e Capodanno**
 
 
 ![Render prodotto a solo scopo esplicativo: il design della panchina sarà prodotto nei prossimi mesi!](Documentazione/panchina-1.png "Render prodotto a solo scopo esplicativo: il design della panchina sarà prodotto nei prossimi mesi!")
@@ -43,7 +49,7 @@ I giovani potranno sperimentare alcune soluzioni legate alla tecnologia connessa
 
 ### Raccontare il Progetto
 
-#####Il progetto in tre parole/concetti (chiave)
+##### Il progetto in tre parole/concetti (chiave)
 
 ###### PAROLA 1: *obiettivo, modalità di azione*
 
