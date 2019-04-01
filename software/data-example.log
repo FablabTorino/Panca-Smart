@@ -1,0 +1,15 @@
+{
+  "time": 1554128521,
+  "wakeup time": 1554128521,
+  "data": {
+    "battery": 12.4,
+    "solar": 12.5,
+    "backup battery": 3.5
+  },
+  "weather": {
+    "temperature": 23.5,
+    "humidity": 65.5,
+    "pressure": 115000,
+    "gas_resistance": 24
+  }
+}
