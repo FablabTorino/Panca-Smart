@@ -1,10 +1,8 @@
 {
-  "time": 1554128521,
-  "wakeup time": 1554128521,
-  "data": {
+  "time": 1554128881,
+  "status": {
     "battery": 12.4,
     "solar": 12.5,
-    "backup battery": 3.5
   },
   "weather": {
     "temperature": 23.5,
