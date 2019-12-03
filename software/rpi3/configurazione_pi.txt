@@ -1,0 +1,117 @@
+
+# add usb interface as eth1
+export WAN_INTERFACE=eth1
+
+cat >> /etc/network/interfaces << EOT
+
+auto $WAN_INTERFACE
+allow-hotplug $WAN_INTERFACE
+iface $WAN_INTERFACE inet dhcp
+EOT
+
+ip link set dev eth1 up
+dhclient eth1 -v
+
+# switch default route to eth1 usb 
+ip route delete default
+ip route add default via 192.168.8.1 dev eth1
+
+
+root@kupikihotspot:~# cat /etc/chilli/config
+HS_LANIF=wlan0
+HS_WANIF=eth1
+HS_NETWORK=192.168.10.0
+HS_NETMASK=255.255.255.0
+HS_UAMLISTEN=192.168.10.1
+HS_NASID="KUPIKI"
+HS_RADIUS=localhost
+HS_RADIUS2=localhost
+HS_RADSECRET=xMBQhZFAqTLZXbDsWJU4nFT0QRARpPfb
+HS_UAMSECRET=
+HS_UAMALLOW=192.168.10.0/24
+HS_UAMFORMAT=http:\/\/192.168.10.1:80
+HS_UAMHOMEPAGE=
+HS_MODE=hotspot
+HS_TYPE=chillispot
+HS_LOC_NAME=pancahotspot
+HS_LAN_ACCESS=off
+HS_SSID=panca
+HS_TCP_PORTS="5000 80"
+HS_COAPORT=3799
+HS_MACAUTH=off
+HS_MACPASSWD=
+HS_UAMDOMAINS=
+
+
+# cambiare nome ssid
+
+cat  /etc/hostapd/hostapd.conf
+interface=wlan0
+driver=nl80211
+ssid=panca
+hw_mode=g
+channel=6
+auth_algs=1
+beacon_int=100
+dtim_period=2
+max_num_sta=255
+rts_threshold=2347
+fragm_threshold=2346
+
+# permettere a daloradius di modificare le configurazioni
+chown www-data:root /usr/share/nginx/html/daloradius/library/daloradius.conf.php
+
+#contare gli utenti loggati
+#controllare che non ci siano piu utenti loggati e spegnere il raspberry
+#mandare un messaggio all'arduino per fare lo spegnimento fisico
+#tempo massimo di inattività da ridurre, a 5 min 
+chilli_query list | awk '{ if ($5 == 1) print $6 }' |wc -l
+
+
+#impostazioni portale nginx
+cat /etc/nginx/sites-enabled/portal 
+
+server {
+       	listen 192.168.10.1:80 default_server;
+
+       	root /usr/share/nginx/portal;
+
+       	index index.html;
+
+       	server_name _;
+
+       	location / {
+       		try_files $uri $uri/ =404;
+       	}
+
+       	location ~ \.php$ {
+       		include snippets/fastcgi-php.conf;
+       		fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+       	}
+}
+
+
+
+#no graphical interface https://www.raspberrypi.org/forums/viewtopic.php?t=45260
+systemctl disable graphical.target
+systemctl isolate multi-user.target
+
+
+# Foto di <a href="https://pixabay.com/it/users/lutmarlon-1720301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1072877">Lut Marlon</a> da <a href="https://pixabay.com/it/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1072877">Pixabay</a>
+# scaricare https://pixabay.com/it/photos/torino-panorama-pallone-aerostatico-1072877/
+# copiare con scp
+scp torino-1072877_1280.jpg  pi@10.42.0.135:/usr/share/nginx/portal/images/background.jpg
+
+
+#weather widget
+
+<a class="weatherwidget-io" href="https://forecast7.com/it/45d077d69/turin/" data-label_1="TURIN" data-label_2="WEATHER" data-theme="original" >TURIN WEATHER</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
+
+
+Configurazione modem huawei 
+http://192.168.8.1/
+
+# accesso daloradius: administrator/radius
