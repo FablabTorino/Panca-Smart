@@ -102,6 +102,22 @@ systemctl isolate multi-user.target
 # copiare con scp
 scp torino-1072877_1280.jpg  pi@10.42.0.135:/usr/share/nginx/portal/images/background.jpg
 
+#fix link logout
+vi /usr/share/nginx/portal/index.html
+
+
+   <div id="successful_login" class="dialog fix-middle">
+        <div class="container text-center dialog-content">
+            <div class="logo"></div>
+            <h1>Connected successfully !</h1>
+            <p>
+                You've successfully managed to log into the Wifi Hotspot.
+                <br> Go to <a href="http://logout" class="link user-actions">http://logout</a> to disconnect.
+            </p>
+        </div>
+    </div>
+
+
 
 #weather widget
 
@@ -115,3 +131,53 @@ Configurazione modem huawei
 http://192.168.8.1/
 
 # accesso daloradius: administrator/radius
+
+
+## config led raspberry pi
+## su /boot/config.txt
+
+# Change ACT LED to heartbeat mode
+dtparam=act_led_trigger=heartbeat
+
+# Disable the PWR LED
+dtparam=pwr_led_trigger=none
+dtparam=pwr_led_activelow=off
+
+
+-------------------------
+
+#terms and conditions
+#su rootfs come parametro json 
+
+/usr/share/nginx/portal/js/configuration.json
+
+{
+  "options": {
+    "terms": {
+      "active": true,
+      "message": "I have read and I agree with the Terms and Conditions",
+      "link": "Terms",
+      "error": "You need to read and accept the Terms and Conditions before proceeding",
+      "terms": "<h3>INFORMAZIONI SUL TRATTAMENTO DEI DATI PERSONALIAI SENSI DEGLI ARTT. 13 E 14DEL GDPR 2016/679</h3><br>I dati personali dell'Utente forniti volontariamente con la Registrazione o raccolti tramite l'utilizzo della navigazione internet, sono trattati secondo quanto previsto dal Regolamento Europeo 2016/679 relativo alla protezione delle persone fisiche con riguardo al trattamento dei dati personali, nonché alla libera circolazione di tali dati e che abroga la direttiva 95/46/CE (di seguito GDPR). Ai sensi degli artt. 13 e 14 del GDPR, la informiamo per tanto, di quanto segue: <br> <b>a.</b>Il Titolare e Responsabile del trattamento dei dati personali è Fablab Torino e i suoi dati di contatto, compresi quelli del Responsabile della Protezione dei dati, sono rinvenibili sul Sito dell'Ente.<br><br><b>b.</b>i dati personali saranno raccolti e comunque trattati, nel rispetto dei principi di correttezza, liceità, minimizzazione dei dati e tutela della riservatezza, al solo fine adempiere agli obblighi di legge ed espletare tutte le attività amministrative, tecniche e di sicurezza necessarie all'erogazione del servizio da Lei richiesto in conformità alle \"Condizioni e termini di utilizzo del servizio\"<br><br><b>c.</b>il conferimento dei Suoi dati ed il relativo trattamento sono obbligatori in relazione alle finalità sopradescritte; ne consegue che l'eventuale rifiuto a fornirli potrà determinare l'impossibilità del Titolare del trattamento di erogare il servizio. Il trattamento dei dati trova pertanto la sua base giuridica nell'art. 6 comma 1 lett. b) c) ed e) del GDPR <br><br><b>d.</b>i Suoi dati sono trattati con modalità cartacee e informatiche, esclusivamente da soggetti tenuti all'obbligo di riservatezza, autorizzati ed istruiti in tal senso dal Titolare, o da imprese espressamente nominate come Responsabili del trattamento, adottando tutte quelle misure tecniche ed organizzative adeguate per tutelare i diritti, le libertà e i legittimi interessi che Le sono riconosciuti per legge in qualità di Interessato <br><br><b>e.</b>i Suoi dati personali sono conservati, per il periodo di utilizzo del servizio e comunque per il tempo previsto dalle norme di legge in vigore e gestiti in locale<br><br><b>f.</b>i Suoi dati potranno essere comunicati a terzi destinatari - Responsabili del trattamento dati - i cui servizi siano necessari per l'espletamento delle attività del Titolare, alle Autorità giudiziarie (per l'accertamento e il perseguimento di reati). I Suoi dati personali non saranno in alcun modo oggetto di comunicazione e diffusione fuori dal caso sopraindicato, né di trasferimento in un Paese terzo extra europeo, né di processi decisionali automatizzati compresa la profilazione <br><br><b>g.</b>In qualità di interessato, potrà esercitare - nei casi previsti - i diritti indicati dagli artt. da 15 a 22 del GDPR (tra cui quelli di ottenere la conferma dell'esistenza o meno dei suoi Dati personali e la loro messa a disposizione in forma intellegibile; di avere conoscenza della logica e delle finalità su cui si basa il trattamento; di ottenere la cancellazione, la trasformazione in forma anonima o la limitazione o il blocco dei Dati trattati in violazione di legge, nonché l'aggiornamento, la rettifica o, se vi è interesse, l'integrazione dei dati; di opporsi per motivi legittimi al trattamento stesso) rivolgendosi al Titolare o al Responsabile per la Protezione dei dati, ai dati di contatto della Pubblica Amministrazione che Le ha offerto il servizio. Potrà anche esercitare il diritto di proporre reclamo all'Autorità di controllo o di ricorrere alle autorità giurisdizionali competenti qualora il trattamento dei dati personali avvenga in violazione di quanto previsto dal GDPR, in conformità agli artt. 77 e 79 del GDPR.<br>"
+    },
+    "userAuthentication": {
+      "active": true,
+      "type": "user"
+    }
+  },
+  "register": {
+    "active": true,
+    "host": "192.168.10.1",
+    "port": "5000"
+  },
+  "chilliController": {
+    "host": "192.168.10.1",
+    "port": "3990",
+    "interval": 60
+  }
+}
+
+
+
+#install remote.it
+sudo apt update && sudo apt install -y connectd && sudo connectd_installer
