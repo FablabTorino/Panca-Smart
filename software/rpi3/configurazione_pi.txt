@@ -1,4 +1,5 @@
 
+
 # add usb interface as eth1
 export WAN_INTERFACE=eth1
 
@@ -136,6 +137,7 @@ http://192.168.8.1/
 ## config led raspberry pi
 ## su /boot/config.txt
 
+vi /boot/config.txt
 # Change ACT LED to heartbeat mode
 dtparam=act_led_trigger=heartbeat
 
@@ -177,7 +179,35 @@ dtparam=pwr_led_activelow=off
   }
 }
 
-
+-------------------------
 
 #install remote.it
 sudo apt update && sudo apt install -y connectd && sudo connectd_installer
+
+-------------------------
+
+TODO ingestion
+
+mandare stringhe seriali con \n come terminatore che rispondono con json
+
+"time 1571759341\n"          - mandare l'ora in unix time 
+"data\n"                     - leggere tutti i dati dalla sd arduino (filtrarli) ogni 60 sec
+                             - mandare i dati online
+"delete YY-MM-DD/hh-mm.LOG"  - fare un ping periodico per evitare di farsi spegnere da arduino (qualsiasi comando; principalmente data/delete)
+"poweroff"                   - mandare il shutdown se non c'è nessuno collegato per almeno 5 min
+
+Data format:
+
+{
+  "time": 1554128881,
+  "status": {
+    "battery": 12.4,
+    "solar": 12.5,
+  },
+  "weather": {
+    "temperature": 23.5,
+    "humidity": 65.5,
+    "pressure": 115000,
+    "gas_resistance": 24
+  }
+}
