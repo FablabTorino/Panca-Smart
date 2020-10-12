@@ -3,42 +3,103 @@
 import serial
 import calendar
 import time
-import json
-import io
+import logging
+import os
 
-#ser = serial.Serial('/dev/pts/2')
-ser = serial.Serial('/dev/ttyACM0')
-ser.flushInput()
-ser_bytes = None
-time.sleep(3)
+import kupiki
+from arduserial import ArduSerial
 
-#Aggiorna data arduino
-ts = calendar.timegm(time.gmtime())
-#print(ts)
+"""
+config 
+"""
+SERIAL_PORT = '/dev/ttyACM0'
 
-# TODO Data request when needed
-#ser.write(("data\n".encode()))
-ser.write(str.encode("time " + str(ts) +"\n"))
+logging.basicConfig(format='%(asctime)s : %(threadName)s : %(message)s',
+                    # filename="/var/log/ingestion.log",
+                    level=logging.DEBUG)
 
-while True:
-     ser_bytes = ser.readline()
-     try:
-        f = json.loads(ser_bytes)
-        with open('data.json', 'a') as outfile:
-               json.dump(f, outfile)
-        #print (f)
+POWEROFF_TIMER = 600  # in seconds
+LOCK_FILE = '/.lock_ingestion'  # if file exist avoid poweroff on exit
 
-     except json.JSONDecodeError as e:
-         print (ser_bytes.decode("utf-8"))
-#         #pass
-#         print (ser_bytes)
-#         errors = open('data.exceptions', 'a')
-#         errors.write = (ser_bytes)
-#         errors.close()
+"""
+constants
+"""
+KEY_DEBUG = 'DEBUG'
+KEY_ERROR = 'ERROR'
+KEY_TIME = 'time'
+KEY_STATUS = 'status'
+KEY_WEATHER = 'weather'
 
-     except UnicodeDecodeError:
-       pass
-#     except:
-#         pass
-#         print (type(ser_bytes))
-#         print (ser_bytes.decode("utf-8"))
+"""
+init global variables
+"""
+_boot = True  # set False after initial setup
+_run = True  # set False to exit
+_poweroff = True  # set False to avoid poweroff after exit
+ser = ArduSerial(SERIAL_PORT)  # class for serial communication
+starting_time = time.time()
+
+time.sleep(1)
+
+
+"""
+start loop
+"""
+while _run:
+    try:
+        if _boot:
+            logging.info("boot")
+            # update arduino datetime
+            ts = calendar.timegm(time.gmtime())
+            ser.command("time", str(ts))
+            ser.command("data")
+            # TODO Data request
+            _boot = False
+
+        json_arrived = ser.update()
+
+        if json_arrived:
+            # debug message
+            _debug = json_arrived.get(KEY_DEBUG)
+            # error message
+            _error = json_arrived.get(KEY_ERROR)
+            # log message
+            _time = json_arrived.get(KEY_TIME)
+            _status = json_arrived.get(KEY_STATUS)
+            _weather = json_arrived.get(KEY_WEATHER)
+
+            if _debug:
+                logging.debug(_debug)
+            if _error:
+                logging.error(_error)
+
+            if _time and _status and _weather:
+                logging.info(json_arrived)
+                # TODO save log
+
+        """
+        Se è accesa da più di POWER_OFF secondi e non c'è nessun host collegato
+        spegne la rpi
+        """
+        if starting_time - time.time() > POWEROFF_TIMER:
+            if not kupiki.get_hosts():
+                if os.path.exists(LOCK_FILE):
+                    _poweroff = False
+                else:
+                    ser.send("poweroff")
+                _run = False
+
+    except KeyboardInterrupt:
+        _run = False
+        _poweroff = False
+    except serial.serialutil.SerialException as e:
+        logging.exception(e)
+        ser = ArduSerial(SERIAL_PORT)
+    except BaseException as e:
+        logging.exception(e)
+
+if _poweroff and False:
+    logging.info("poweroff")
+    os.system("sudo poweroff")
+
+exit(2)
